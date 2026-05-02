@@ -39,7 +39,7 @@ Follow the prompts. Select "Other" as the framework. Output directory is the roo
 
 ## Custom domain
 
-In the Vercel dashboard → your project → Settings → Domains → add `mechrl.com`.
+In the Vercel dashboard → your project → Settings → Domains → add `mechrl.store`.
 
 Add these DNS records at your registrar:
 - `A` record: `@` → `76.76.21.21`
