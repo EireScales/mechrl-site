@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Mech access plans — 1 day to lifetime. Activated in your Discord within 1 hour of payment." />
+  <meta property="og:title" content="Mech — Access Plans" />
+  <meta property="og:description" content="Train with SSL players. Rank up faster." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mechrl.store/products" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>Access Plans — Mech</title>
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
+  <link rel="icon" href="/favicon-16x16.png" type="image/png" sizes="16x16" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { accent: '#dc2626', surface: '#141414' },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="bg-[#0a0a0a] text-[#fafafa] antialiased" data-page="products">
+
+  <!-- Custom cursor -->
+  <div id="cursor" aria-hidden="true"></div>
+
+  <!-- ═══ NAV ═══════════════════════════════════════════════ -->
+  <header id="nav" role="banner">
+    <a href="/" class="nav-wordmark mono font-bold tracking-[0.18em] text-sm" aria-label="Mech — home">
+      MECH
+    </a>
+
+    <nav class="nav-desktop" aria-label="Main navigation">
+      <a href="/" class="nav-link" data-nav="home">Home</a>
+      <a href="/products" class="nav-link" data-nav="products">Products</a>
+      <a href="/reviews" class="nav-link" data-nav="reviews">Reviews</a>
+      <a href="/products" class="btn-primary nav-cta">Get Access</a>
+    </nav>
+
+    <button class="nav-hamburger" id="nav-hamburger"
+            aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-mobile-menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+  </header>
+
+  <!-- Mobile menu -->
+  <div id="nav-mobile-menu" class="nav-mobile" aria-hidden="true">
+    <a href="/" class="nav-mobile-link" data-nav="home">Home</a>
+    <a href="/products" class="nav-mobile-link" data-nav="products">Products</a>
+    <a href="/reviews" class="nav-mobile-link" data-nav="reviews">Reviews</a>
+    <a href="/products" class="btn-primary nav-mobile-cta">Get Access</a>
+  </div>
+
+  <!-- Boost trail -->
+  <div class="boost-trail" aria-hidden="true"></div>
+
+  <main>
+
+    <!-- ═══ PAGE HERO ═════════════════════════════════════════ -->
+    <section class="page-hero" aria-labelledby="page-heading">
+      <div class="section-container">
+        <p class="section-label" data-reveal aria-hidden="true">Pricing</p>
+        <h1 id="page-heading" class="section-header" data-reveal>Access Plans</h1>
+        <p class="page-hero-sub" data-reveal>Activated in your Discord within 1 hour of payment.</p>
+      </div>
+    </section>
+
+    <!-- ═══ PRICING GRID ══════════════════════════════════════ -->
+    <section class="pb-24 px-0" aria-label="Pricing plans">
+      <div class="section-container">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" data-stagger>
+
+          <!-- 1 Day -->
+          <article class="pricing-card" data-reveal>
+            <p class="tier-name">1 Day Access</p>
+            <p class="price-display">$<span class="price-value" data-price="10">10</span></p>
+            <p class="price-note">One-time payment</p>
+            <a href="https://buy.stripe.com/aFa3cv6tE0bC6hs5VS2wU00" class="btn-card" aria-label="Get 1 Day Access for $10">Get Access</a>
+          </article>
+
+          <!-- 3 Day -->
+          <article class="pricing-card" data-reveal>
+            <p class="tier-name">3 Day Access</p>
+            <p class="price-display">$<span class="price-value" data-price="12">12</span></p>
+            <p class="price-note">One-time payment</p>
+            <a href="https://buy.stripe.com/aFacN52dof6w7lwbgc2wU01" class="btn-card" aria-label="Get 3 Day Access for $12">Get Access</a>
+          </article>
+
+          <!-- 1 Week -->
+          <article class="pricing-card" data-reveal>
+            <p class="tier-name">1 Week Access</p>
+            <p class="price-display">$<span class="price-value" data-price="18">18</span></p>
+            <p class="price-note">One-time payment</p>
+            <a href="https://buy.stripe.com/dRm9AT6tEbUk5doac82wU02" class="btn-card" aria-label="Get 1 Week Access for $18">Get Access</a>
+          </article>
+
+          <!-- 1 Month — MOST POPULAR -->
+          <article class="pricing-card popular" data-reveal>
+            <div class="badge hot" aria-label="Most popular plan">Most Popular</div>
+            <p class="tier-name">1 Month Access</p>
+            <p class="price-display">$<span class="price-value" data-price="30">30</span></p>
+            <p class="price-note">One-time payment</p>
+            <a href="https://buy.stripe.com/eVqbJ16tEcYofS2dok2wU03" class="btn-card" aria-label="Get 1 Month Access for $30">Get Access</a>
+          </article>
+
+          <!-- 3 Month -->
+          <article class="pricing-card" data-reveal>
+            <p class="tier-name">3 Month Access</p>
+            <p class="price-display">$<span class="price-value" data-price="40">40</span></p>
+            <p class="price-note">One-time payment</p>
+            <a href="https://buy.stripe.com/bJe4gz2dobUk35g9842wU04" class="btn-card" aria-label="Get 3 Month Access for $40">Get Access</a>
+          </article>
+
+          <!-- Lifetime — BEST VALUE -->
+          <article class="pricing-card best-val" data-reveal>
+            <div class="badge value" aria-label="Best value plan">Best Value</div>
+            <p class="tier-name">Lifetime Access</p>
+            <p class="price-display">$<span class="price-value" data-price="85">85</span></p>
+            <p class="price-note">One-time payment, never expires</p>
+            <a href="https://buy.stripe.com/cNi14n19kgaAeNY0By2wU05" class="btn-card" aria-label="Get Lifetime Access for $85">Get Access</a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ CUSTOM ACCESS ══════════════════════════════════════ -->
+    <section id="custom-access" class="py-24 px-0" aria-labelledby="custom-access-heading">
+      <div class="section-container">
+
+        <div class="custom-access-divider" aria-hidden="true"></div>
+
+        <p class="custom-access-eyebrow" data-reveal>BEYOND THE TIERS</p>
+        <h2 id="custom-access-heading" class="section-header" data-reveal>Custom Access</h2>
+        <p class="custom-access-subtext" data-reveal>For extended sessions, group bookings, tournament arrangements, or anything outside the standard tiers. Message us on Discord first if you're unsure — then set your amount.</p>
+
+        <article class="custom-access-card" data-reveal>
+          <div class="custom-access-bespoke-badge" aria-hidden="true">BESPOKE</div>
+
+          <div class="custom-access-inner">
+
+            <div class="custom-access-left">
+              <p class="custom-access-tier-label">CUSTOM</p>
+              <p class="custom-access-price-display">$<span aria-label="price is set by you">?</span></p>
+              <p class="custom-access-you-set">You set the amount</p>
+              <p class="custom-access-range">$50 minimum · $2,000 maximum</p>
+            </div>
+
+            <div class="custom-access-right">
+              <ul class="custom-access-bullets">
+                <li>Extended coaching sessions</li>
+                <li>Group access for friends or teammates</li>
+                <li>Tournament hosting or entry arrangements</li>
+                <li>Any service outside the standard tiers</li>
+              </ul>
+              <a href="https://buy.stripe.com/3cIcN54lw0bCaxI9842wU06"
+                 class="btn-custom-pay"
+                 aria-label="Set amount and pay for custom access">Set Amount &amp; Pay</a>
+            </div>
+
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══ FOOTER ═══════════════════════════════════════════ -->
+  <footer class="py-12 px-0 border-t border-white/[0.04]" role="contentinfo">
+    <div class="section-container">
+
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
+        <a href="/"
+           class="mono font-bold tracking-[0.18em] text-sm text-[#fafafa] hover:text-[#dc2626] transition-colors duration-200"
+           aria-label="Mech — home">
+          MECH
+        </a>
+        <div class="flex items-center gap-6 flex-wrap justify-center">
+          <a href="https://discord.gg/83kE7ddq7F"
+             target="_blank" rel="noopener noreferrer"
+             class="text-[#737373] hover:text-[#fafafa] text-sm transition-colors duration-200"
+             aria-label="Join our Discord server">
+            Discord
+          </a>
+          <a href="mailto:loverlywd@gmail.com"
+             class="text-[#737373] hover:text-[#fafafa] text-sm transition-colors duration-200">
+            loverlywd@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <p class="text-center text-[#737373] text-xs">
+        &copy; 2026 Mech. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

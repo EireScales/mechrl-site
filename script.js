@@ -3,27 +3,98 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
+  const page = document.body.dataset.page || 'home';
+
   initNav();
+  initNavMobile();
+  initNavActive();
   initCursor();
-  initHeroAnimation();
   initScrollReveals();
   initPriceCounters();
   initFAQ();
-  fetchDiscordCount();
-  initSuccessModal();
+
+  if (page === 'home') {
+    initHeroAnimation();
+    fetchDiscordCount();
+    initSuccessModal();
+  }
 });
 
 // ─── Nav: transparent → frosted on scroll ────────────────────
 function initNav() {
   const nav  = document.getElementById('nav');
-  const hero = document.getElementById('hero');
-  if (!nav || !hero) return;
+  if (!nav) return;
 
-  const obs = new IntersectionObserver(
-    ([e]) => nav.classList.toggle('scrolled', !e.isIntersecting),
-    { threshold: 0 }
-  );
-  obs.observe(hero);
+  const hero = document.getElementById('hero');
+  if (hero) {
+    const obs = new IntersectionObserver(
+      ([e]) => nav.classList.toggle('scrolled', !e.isIntersecting),
+      { threshold: 0 }
+    );
+    obs.observe(hero);
+  } else {
+    const update = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+}
+
+// ─── Mobile nav toggle ────────────────────────────────────────
+function initNavMobile() {
+  const btn  = document.getElementById('nav-hamburger');
+  const menu = document.getElementById('nav-mobile-menu');
+  if (!btn || !menu) return;
+
+  function openMenu() {
+    btn.classList.add('open');
+    menu.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    btn.setAttribute('aria-label', 'Close navigation menu');
+    menu.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.setAttribute('aria-label', 'Open navigation menu');
+    menu.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', () => {
+    btn.classList.contains('open') ? closeMenu() : openMenu();
+  });
+
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && btn.classList.contains('open')) {
+      closeMenu();
+      btn.focus();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768 && btn.classList.contains('open')) closeMenu();
+  }, { passive: true });
+}
+
+// ─── Active nav link ──────────────────────────────────────────
+function initNavActive() {
+  const raw  = window.location.pathname.replace(/\/$/, '');
+  const path = raw || '/';
+
+  let page = 'home';
+  if (path === '/products' || path === '/products.html') page = 'products';
+  else if (path === '/reviews' || path === '/reviews.html') page = 'reviews';
+
+  document.querySelectorAll('[data-nav]').forEach(link => {
+    if (link.dataset.nav === page) link.classList.add('active');
+  });
 }
 
 // ─── Custom cursor ────────────────────────────────────────────
@@ -64,7 +135,7 @@ function initHeroAnimation() {
     const words = text.split(' ');
     el.setAttribute('aria-hidden', 'true');
 
-    let ci = 0; // global char index, increments for each char AND each space
+    let ci = 0;
     const html = words.map((word, wi) => {
       const charSpans = [...word].map(ch => {
         const delay = startDelay + ci * 30;
@@ -74,10 +145,8 @@ function initHeroAnimation() {
         return `<span class="hero-char" style="animation-delay:${delay}ms">${safe}</span>`;
       }).join('');
 
-      if (wi < words.length - 1) ci++; // reserve timing slot for the space
+      if (wi < words.length - 1) ci++;
 
-      // Word wrapped in inline-block keeps characters together at line breaks;
-      // the text space after each word (except the last) is a real breakpoint.
       return `<span style="display:inline-block">${charSpans}</span>${wi < words.length - 1 ? ' ' : ''}`;
     }).join('');
 
@@ -99,7 +168,6 @@ function initScrollReveals() {
     return;
   }
 
-  // Apply stagger delay to siblings inside [data-stagger] containers
   document.querySelectorAll('[data-stagger]').forEach(wrap => {
     wrap.querySelectorAll('[data-reveal]').forEach((el, i) => {
       el.style.transitionDelay = `${i * 75}ms`;
@@ -123,7 +191,6 @@ function initPriceCounters() {
   const els = document.querySelectorAll('.price-value[data-price]');
   if (!els.length || reducedMotion) return;
 
-  // Reset to 0 before first paint completes (script is at end of body)
   els.forEach(el => { el.textContent = '0'; });
 
   const obs = new IntersectionObserver(entries => {
@@ -157,7 +224,6 @@ function initFAQ() {
       const content = item.querySelector('.faq-content');
       const wasOpen = item.classList.contains('open');
 
-      // Close all open items
       document.querySelectorAll('.faq-item.open').forEach(open => {
         open.classList.remove('open');
         open.querySelector('.faq-content').style.maxHeight = '0';
@@ -199,7 +265,6 @@ function initSuccessModal() {
   const params = new URLSearchParams(window.location.search);
   if (params.get('success') !== 'true') return;
 
-  // Clean the URL immediately so a refresh doesn't re-trigger
   history.replaceState(null, '', window.location.pathname);
 
   const overlay = document.createElement('div');
@@ -241,7 +306,6 @@ function initSuccessModal() {
   document.body.appendChild(overlay);
   document.body.style.overflow = 'hidden';
 
-  // Focus the modal for accessibility
   const modal = overlay.querySelector('#success-modal');
   modal.setAttribute('tabindex', '-1');
   modal.focus();
@@ -257,11 +321,7 @@ function initSuccessModal() {
   }
 
   overlay.querySelector('#success-close').addEventListener('click', close);
-
-  // Close on backdrop click (not on modal itself)
   overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
-
-  // Close on Escape
   document.addEventListener('keydown', function onKey(e) {
     if (e.key === 'Escape') { close(); document.removeEventListener('keydown', onKey); }
   });
