@@ -23,34 +23,6 @@ h1, h2, h3, .mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* ─── Custom cursor (desktop only) ──────────────────── */
-@media (hover: hover) and (pointer: fine) {
-  body { cursor: none; }
-  #cursor { display: block; }
-}
-
-#cursor {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--text);
-  pointer-events: none;
-  z-index: 9999;
-  transition: width 0.15s ease, height 0.15s ease,
-              background 0.15s ease, border 0.15s ease;
-  will-change: transform;
-}
-
-#cursor.expanded {
-  width: 24px;
-  height: 24px;
-  background: transparent;
-  border: 1.5px solid var(--accent);
-}
 
 /* ─── Boost trail ────────────────────────────────────── */
 .boost-trail {
@@ -166,9 +138,6 @@ h1, h2, h3, .mono {
   z-index: 60;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .nav-hamburger { cursor: none; }
-}
 
 @media (min-width: 768px) {
   .nav-hamburger { display: none; }
@@ -581,9 +550,6 @@ h1, h2, h3, .mono {
   gap: 16px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .faq-trigger { cursor: none; }
-}
 
 .faq-icon {
   flex-shrink: 0;
@@ -787,9 +753,6 @@ h1, h2, h3, .mono {
 
 #success-close:hover { color: var(--text); }
 
-@media (hover: hover) and (pointer: fine) {
-  #success-close { cursor: none; }
-}
 
 /* ─── Reduced motion ─────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {

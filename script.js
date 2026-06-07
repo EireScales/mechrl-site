@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initNavMobile();
   initNavActive();
-  initCursor();
   initScrollReveals();
   initPriceCounters();
   initFAQ();
@@ -97,30 +96,6 @@ function initNavActive() {
   });
 }
 
-// ─── Custom cursor ────────────────────────────────────────────
-function initCursor() {
-  const cursor = document.getElementById('cursor');
-  if (!cursor) return;
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-  let mx = 0, my = 0, raf = null;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    if (!raf) raf = requestAnimationFrame(moveCursor);
-  });
-
-  function moveCursor() {
-    cursor.style.transform = `translate(calc(${mx}px - 50%), calc(${my}px - 50%))`;
-    raf = null;
-  }
-
-  document.querySelectorAll('a, button, [role="button"], label').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('expanded'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('expanded'));
-  });
-}
 
 // ─── Hero: stagger character reveal ──────────────────────────
 function initHeroAnimation() {
@@ -298,7 +273,6 @@ function initSuccessModal() {
         </li>
       </ol>
 
-      <p class="success-contact">Questions? Email <a href="mailto:loverlywd@gmail.com">loverlywd@gmail.com</a></p>
       <button id="success-close" aria-label="Close this dialog">Close</button>
     </div>
   `;
